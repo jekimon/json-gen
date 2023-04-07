@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JSON Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="main-container">
+    <div id="editOption" class="col left-col expand">
+      <div id="selection" class="elements">
+
+
+        <!-- Section Block -->
+
+
+        <div id="obj-sec" class="blockContainer">
+          <section class="blocks cont section hover" title="bcube-custom-section" ondragstart="dragStart(event)"
+            ondragend="dragEnd(event)" ondragover="dragOverCont(event, this.id)" draggable="true" id="sectionBlk"
+            onmouseover="hover(event)" onmouseout="hover(event)">
+
+            <div class="blocks cont row" title="row" ondrop="dropCol(event)" ondragstart="colDragStart(event)" id="row"
+              onmouseover="hoverRow(event)" onmouseout="hoverRow(event)">
+              
+              <div class="editBtnGrp" onmouseover="hoverBtnParent(event)"
+                onmouseout="hoverBtnParent(event)">
+                <div class="rowActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                  <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                    onclick="openContForm(event)"></button>
+                </div>
+
+                <div class="rowIcnBtns icnBtns">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="editBtnGrp" onmouseover="hoverBtnParent(event)" onmouseout="hoverBtnParent(event)">
+              <div class="secActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="back" onclick="moveUp(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="forward" onclick="moveDown(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                  onclick="openContForm(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="duplicate"
+                  onclick="dupContainer(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="delete"
+                  onclick="delElement(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="move"></button>
+              </div>
+              <div class="secIcnBtns icnBtns">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fa fa-arrows" aria-hidden="true"></i>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Column Block -->
+
+        <div id="obj-col" class="blockContainer">
+          <div title="column" class="blocks cont column emptyCol hover" ondrop="dropBlk(event)"
+            ondragover="dragOverCont(event, this.id)" ondragend="dragEnd(event)" ondragstart="colDragStart(event)"
+            draggable="true" id="column" onmouseover="hover(event)" onmouseout="hover(event)">
+
+            <div class="editBtnGrp" onmouseover="hoverBtnParent(event)" onmouseout="hoverBtnParent(event)">
+              <div class="colActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="back" onclick="moveUp(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="forward" onclick="moveDown(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                  onclick="openContForm(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="duplicate"
+                  onclick="dupContainer(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="delete"
+                  onclick="delElement(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="move"></button>
+              </div>
+              <div class="colIcnBtns icnBtns">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fa fa-arrows" aria-hidden="true"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Heading Block -->
+
+        <div id="obj-head" class="blockContainer">
+          <div class="blocks blks heading hover" title="heading" ondragstart="blkDragStart(event)" draggable="true"
+            id="blkTitle">
+            <h2 class="h2-title text innerBlk" contenteditable="true" id="title" onmouseover="hoverBlk(event)"
+              onmouseout="hoverBlk(event)">Place your title here</h2>
+            <div class="editBtnGrp" onmouseover="hoverBtnParent(event)" onmouseout="hoverBtnParent(event)">
+              <div class="blkActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                <button class="directBtn" onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="back" onclick="moveUp(event)"></button>
+                <button class="directBtn" onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="forward" onclick="moveDown(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                  onclick="openForm(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="duplicate"
+                  onclick="dupText(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="delete"
+                  onclick="delElement(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="move"></button>
+              </div>
+              <div class="blkIcnBtns icnBtns">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fa fa-arrows" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text Block -->
+
+        <div id="obj-text" class="blockContainer">
+          <div class="blocks blks paragraph hover" title="text" ondragstart="blkDragStart(event)" draggable="true"
+            id="blkTxt">
+            <p onclick="openForm(event)" class="p-text text innerBlk" id="text" contenteditable="true"
+              onmouseover="hoverBlk(event)" onmouseout="hoverBlk(event)">Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.</p>
+            <div class="editBtnGrp" onmouseover="hoverBtnParent(event)" onmouseout="hoverBtnParent(event)">
+              <div class="blkActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="back" onclick="moveUp(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="forward" onclick="moveDown(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                  onclick="openForm(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="duplicate"
+                  onclick="dupText(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="delete"
+                  onclick="delElement(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="move"></button>
+              </div>
+              <div class="blkIcnBtns icnBtns">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fa fa-arrows" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Button Block -->
+
+        <div id="obj-btn" class="blockContainer">
+          <div class="blocks blks button hover" title="button" ondragstart="blkDragStart(event)" draggable="true"
+            id="blkBtn">
+            <a href="#" contenteditable="true" class="a-btn btn innerBlk" id="btn" onmouseover="hoverBlk(event)"
+              onmouseout="hoverBlk(event)">Learn More</a>
+            <div class="editBtnGrp" onmouseover="hoverBtnParent(event)" onmouseout="hoverBtnParent(event)">
+              <div class="blkActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="back" onclick="moveUp(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="forward" onclick="moveDown(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                  onclick="openBtnForm(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="duplicate"
+                  onclick="dupButton(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="delete"
+                  onclick="delElement(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="move"></button>
+              </div>
+              <div class="blkIcnBtns icnBtns">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fa fa-arrows" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Image Block -->
+
+        <div id="obj-img" class="blockContainer">
+          <div class="blocks blks image hover" title="image" ondragstart="blkDragStart(event)" draggable="true"
+            id="blkImg">
+            <img onclick="openImgForm(event)" class="imgs innerBlk" id="img-Output" width="100%"
+              src="https://i.ibb.co/7QCynM5/img-pholder.png" alt="" onmouseover="hoverBlk(event)" onerror="imgError()"
+              onmouseout="hoverBlk(event)" />
+            <div class="editBtnGrp" onmouseover="hoverBtnParent(event)" onmouseout="hoverBtnParent(event)">
+              <div class="blkActBtns actBtns" onmouseover="hoverBtnGrp(event)" onmouseout="hoverBtnGrp(event)">
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="back" onclick="moveUp(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="forward" onclick="moveDown(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="edit"
+                  onclick="openImgForm(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="duplicate"
+                  onclick="dupImage(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="delete"
+                  onclick="delElement(event)"></button>
+                <button onmouseover="hoverBtn(event)" onmouseout="hoverBtn(event)" title="move"></button>
+              </div>
+              <div class="blkIcnBtns icnBtns">
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <i class="fa fa-arrows" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="actions">
+        <button title="Save to Local Storage" class="btnClass" id="saveSession" onclick="saveSession()">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+        </button>
+        <button title="Enable Element Guide" class="btnClass" id="guide" onclick="viewGuide()">
+          <i class="fa fa-object-group" aria-hidden="true"></i> Guide
+        </button>
+        <button title="Download JSON File" class="btnClass" onclick="getData()">
+          <i class="fa fa-file-code-o" aria-hidden="true"></i> Json
+        </button>
+      </div>
+
+      <div class="collapse">
+        <button title="Collapse" class="collapseBtn" id="collapseLeft" onclick="collapseExpand()">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <div id="production" class="col right-col">
+      <div id="loading" class="saving">
+        <div id="spinner" class="loader"></div>
+        <i id="success" class="fa fa-check" aria-hidden="true"></i>
+        <i id="unsuccess" class="fa fa-times" aria-hidden="true"></i>
+        <p id="savingText">Loading</p>
+      </div>
+      <div id="target" class="pageContainer" ondrop="dropSec(event)" ondrag="dragging(event)"
+        ondragover="allowDrop(event)"></div>
+      <p id="printJson"></p>
+
+    </div>
+
+  </div>
+
+  <div class="modal" id="myText">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="mTitle" class="modal-title">Modal Header</h4>
+        <span class='close'>✖</span>
+      </div>
+      <div class="modal-body">
+
+        <ul class="styleEditor">
+          <li><label>Font Size: <input type="text" id="fSize"></label></li>
+          <li><label>Line Height: <input type="text" id="lHeight"></label></li>
+          <li><label>Letter Spacing: <input type="text" id="lSpacing"></label></li>
+          <li>
+            <label>Text Color:
+              <span class="colorPicker">
+                <input id="txtColorPicker" type="color" class="colorInput" value="#000000" />
+                <input type="text" id="txtColor" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li><label>Font Weight:
+              <select id="fWeight">
+                <option value=""></option>
+                <option value="400">Normal</option>
+                <option value="600">SemiBold</option>
+                <option value="700">Bold</option>
+                <option value="800">ExtraBold</option>
+              </select>
+            </label>
+          </li>
+          <li><label>Text Align:
+              <select id="tAlign">
+                <option value=""></option>
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+                <option value="justify">Justify</option>
+              </select>
+            </label>
+          </li>
+        </ul>
+        <div class="groupBtns">
+          <button id="saveTxt" title="Apply Styling" class="actionBtns"><i class="fa fa-magic"
+              aria-hidden="true"></i></button>
+          <button id="dupTxt" title="Duplicate Element" class="actionBtns"><i class="fa fa-files-o"
+              aria-hidden="true"></i></button>
+          <button id="delTxt" title="Delete Element" class="actionBtns"><i class="fa fa-trash-o"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal" id="myContainer">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="cTitle" class="modal-title">Modal Header</h4>
+        <span class='close'>✖</span>
+      </div>
+      <div class="modal-body">
+        <ul class="styleEditor">
+          <li>
+            <label class="padding">Padding:
+              <div class="groupField">
+                <input type="text" id="pTop" placeholder="▵">
+                <input type="text" id="pRight" placeholder="▹">
+                <input type="text" id="pBottom" placeholder="▿">
+                <input type="text" id="pLeft" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="margin">Margin:
+              <div class="groupField">
+                <input type="text" id="mTop" placeholder="▵">
+                <input type="text" id="mRight" placeholder="▹">
+                <input type="text" id="mBottom" placeholder="▿">
+                <input type="text" id="mLeft" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="border-width">Border Width:
+              <div class="groupField">
+                <input type="text" id="bTopWidth" placeholder="▵">
+                <input type="text" id="bRightWidth" placeholder="▹">
+                <input type="text" id="bBottomWidth" placeholder="▿">
+                <input type="text" id="bLeftWidth" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="border-radius">Border Radius:
+              <div class="groupField">
+                <input type="text" id="bTopLeftRadius" placeholder="⌜">
+                <input type="text" id="bTopRightRadius" placeholder="⌝">
+                <input type="text" id="bBottomRightRadius" placeholder="⌟">
+                <input type="text" id="bBottomLeftRadius" placeholder="⌞">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label>Border Style:
+              <select id="bStyle">
+                <option value=""></option>
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Border Color:
+              <span class="colorPicker">
+                <input id="bColorPicker" type="color" class="colorInput" />
+                <input type="text" id="bColor" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li><label>Width: <input type="text" id="width"></label></li>
+          <li><label>Max Width: <input type="text" id="mWidth"></label></li>
+          <li><label>Min Height: <input type="text" id="mHeight"></label></li>
+          <li>
+            <label>Background Color:
+              <span class="colorPicker">
+                <input id="bgColorPicker" type="color" class="colorInput" />
+                <input type="text" id="bgColor" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li><label>Horizontal Gap: <input type="text" id="cGap"></label></li>
+          <li><label>Vertical Gap: <input type="text" id="rGap"></label></li>
+          <li>
+            <label>Flex Direction:
+              <select id="fDirect">
+                <option value=""></option>
+                <option value="column">Vertical</option>
+                <option value="row">Horizontal</option>
+                <option value="column-reverse">Ver-Reverse</option>
+                <option value="row-reverse">Hor-Reverse</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Align Content:
+              <select id="aContent">
+                <option value=""></option>
+                <option value="flex-start">Start</option>
+                <option value="flex-end">End</option>
+                <option value="center">Center</option>
+                <option value="stretch">Stretch</option>
+                <option value="space-between">Between</option>
+                <option value="space-around">Around</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Justify Content:
+              <select id="jContent">
+                <option value=""></option>
+                <option value="flex-start">Start</option>
+                <option value="flex-end">End</option>
+                <option value="center">Center</option>
+                <option value="space-between">Between</option>
+                <option value="space-around">Around</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Align Items:
+              <select id="aItems">
+                <option value=""></option>
+                <option value="flex-start">Start</option>
+                <option value="flex-end">End</option>
+                <option value="center">Center</option>
+                <option value="stretch">Stretch</option>
+                <option value="baseline">Baseline</option>
+              </select>
+            </label>
+          </li>
+          <li class="bgImageUploader">
+            <label for="file">Background Image: <span class="actionBtns">Upload</span>
+              <input type="file" accept="image/*" name="image" id="bgFile" class="inputFile" onchange="loadFile(event)">
+            </label>
+            <div class="bgPlaceholder">
+              <img id="bgOutput" width="210px" height="120px"></img>
+              <div class="bgDefault"></div>
+            </div>
+            <input title="hiddenUrl" type="text" id="bgUrl">
+            <!-- <button title="delete background" id="delBgImg">Delete Background Image</button> -->
+            <input title="delete background" id="delBgImg" type="radio"
+              onclick="document.getElementById('bgUrl').value = ''"></input>
+          </li>
+          <li><label>Background Size:
+              <select id="bgSize">
+                <option value=""></option>
+                <option value="auto">Auto</option>
+                <option value="cover">Cover</option>
+                <option value="contain">Contain</option>
+              </select>
+            </label>
+          </li>
+          <li><label>Background Position:
+              <select id="bgPosition">
+                <option value=""></option>
+                <option value="left top">Top Left</option>
+                <option value="center top">Top Center</option>
+                <option value="right top">Top Right</option>
+                <option value="left center">Center Left</option>
+                <option value="center center">Center Center</option>
+                <option value="right center">Center Right</option>
+                <option value="left bottom">Bottom Left</option>
+                <option value="center bottom">Bottom Center</option>
+                <option value="right bottom">Bottom Right</option>
+              </select>
+            </label>
+          </li>
+          <li><label>Background Repeat:
+              <select id="bgRepeat">
+                <option value=""></option>
+                <option value="no-repeat">no-repeat</option>
+                <option value="repeat">repeat</option>
+                <option value="repeat-x">repeat-x</option>
+                <option value="repeat-y">repeat-y</option>
+              </select>
+            </label>
+        </ul>
+        <div class="groupBtns">
+          <button id="saveCont" title="Apply Styling" class="actionBtns"><i class="fa fa-magic"
+              aria-hidden="true"></i></button>
+          <button id="dupCont" title="Duplicate Element" class="actionBtns"><i class="fa fa-files-o"
+              aria-hidden="true"></i></button>
+          <button id="delCont" title="Delete Element" class="actionBtns"><i class="fa fa-trash-o"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="myBtn">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="bTitle" class="modal-title">Modal Header</h4>
+        <span class='close'>✖</span>
+      </div>
+      <div class="modal-body">
+        <ul class="styleEditor">
+          <li>
+            <label class="padding">Padding:
+              <div class="groupField">
+                <input type="text" id="pTopBtn" placeholder="▴">
+                <input type="text" id="pRightBtn" placeholder="▸">
+                <input type="text" id="pBottomBtn" placeholder="▾">
+                <input type="text" id="pLeftBtn" placeholder="◂">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="margin">Margin:
+              <div class="groupField">
+                <input type="text" id="mTopBtn" placeholder="▵">
+                <input type="text" id="mRightBtn" placeholder="▹">
+                <input type="text" id="mBottomBtn" placeholder="▿">
+                <input type="text" id="mLeftBtn" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="border-width">Border Width:
+              <div class="groupField">
+                <input type="text" id="bTopWidthBtn" placeholder="▵">
+                <input type="text" id="bRightWidthBtn" placeholder="▹">
+                <input type="text" id="bBottomWidthBtn" placeholder="▿">
+                <input type="text" id="bLeftWidthBtn" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="border-radius">Border Radius:
+              <div class="groupField">
+                <input type="text" id="bTopLeftRadiusBtn" placeholder="⌜">
+                <input type="text" id="bTopRightRadiusBtn" placeholder="⌝">
+                <input type="text" id="bBottomRightRadiusBtn" placeholder="⌟">
+                <input type="text" id="bBottomLeftRadiusBtn" placeholder="⌞">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label>Border Style:
+              <select id="bStyleBtn">
+                <option value=""></option>
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Border Color:
+              <span class="colorPicker">
+                <input id="bColorPickerBtn" class="colorInput" type="color" />
+                <input type="text" id="bColorBtn" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li><label>Font Size: <input type="text" id="fSizeBtn"></label></li>
+          <li><label>Font Weight:
+              <select id="fWeightBtn">
+                <option value=""></option>
+                <option value="400">Normal</option>
+                <option value="600">SemiBold</option>
+                <option value="700">Bold</option>
+                <option value="800">ExtraBold</option>
+              </select>
+            </label>
+          </li>
+          <li><label>Alignment:
+              <select id="tAlignBtn">
+                <option value=""></option>
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+              </select>
+            </label>
+          </li>
+          <li><label>Width: <input type="text" id="widthBtn"></label></li>
+          <li><label>Max Width: <input type="text" id="mWidthBtn"></label></li>
+          <li><label>Min Height: <input type="text" id="mHeightBtn"></label></li>
+          <li>
+            <label>Text Color:
+              <span class="colorPicker">
+                <input id="txtColorPickerBtn" class="colorInput" type="color" />
+                <input type="text" id="txtColorBtn" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li>
+            <label>Background Color:
+              <span class="colorPicker">
+                <input id="bgColorPickerBtn" class="colorInput" type="color" />
+                <input type="text" id="bgColorBtn" class="txtInput" />
+              </span>
+            </label>
+          </li>
+        </ul>
+        <div class="groupBtns">
+          <button id="saveBtn" title="Apply Styling" class="actionBtns"><i class="fa fa-magic"
+              aria-hidden="true"></i></button>
+          <button id="dupBtn" title="Duplicate Element" class="actionBtns"><i class="fa fa-files-o"
+              aria-hidden="true"></i></button>
+          <button id="delBtn" title="Delete Element" class="actionBtns"><i class="fa fa-trash-o"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="myImg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="iTitle" class="modal-title">Modal Header</h4>
+        <span class='close'>✖</span>
+      </div>
+      <div class="modal-body">
+        <ul class="styleEditor">
+          <li class="imageUploader">
+            <label for="file">Upload Image: <span class="actionBtns">Upload</span>
+              <input type="file" accept="image/*" name="image" id="file" class="inputFile" onchange="loadFile(event)">
+            </label>
+            <img id="output" width="210px" alt="upload"/>
+            <input title="hiddenUrl" type="text" id="imgUrl" class="hideUrl">
+          </li>
+          <li>
+            <label class="padding">Padding:
+              <div class="groupField">
+                <input type="text" id="pTopImg" placeholder="▴">
+                <input type="text" id="pRightImg" placeholder="▸">
+                <input type="text" id="pBottomImg" placeholder="▾">
+                <input type="text" id="pLeftImg" placeholder="◂">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="margin">Margin:
+              <div class="groupField">
+                <input type="text" id="mTopImg" placeholder="▵">
+                <input type="text" id="mRightImg" placeholder="▹">
+                <input type="text" id="mBottomImg" placeholder="▿">
+                <input type="text" id="mLeftImg" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="border-width">Border Width:
+              <div class="groupField">
+                <input type="text" id="bTopWidthImg" placeholder="▵">
+                <input type="text" id="bRightWidthImg" placeholder="▹">
+                <input type="text" id="bBottomWidthImg" placeholder="▿">
+                <input type="text" id="bLeftWidthImg" placeholder="◃">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label class="border-radius">Border Radius:
+              <div class="groupField">
+                <input type="text" id="bTopLeftRadiusImg" placeholder="⌜">
+                <input type="text" id="bTopRightRadiusImg" placeholder="⌝">
+                <input type="text" id="bBottomRightRadiusImg" placeholder="⌟">
+                <input type="text" id="bBottomLeftRadiusImg" placeholder="⌞">
+              </div>
+            </label>
+          </li>
+          <li>
+            <label>Border Style:
+              <select id="bStyleImg">
+                <option value=""></option>
+                <option value="solid">Solid</option>
+                <option value="dashed">Dashed</option>
+                <option value="dotted">Dotted</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <label>Border Color:
+              <span class="colorPicker">
+                <input id="bColorPickerImg" class="colorInput" type="color" />
+                <input type="text" id="bColorImg" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li><label>Width: <input type="text" id="widthImg"></label></li>
+          <li><label>Max Width: <input type="text" id="mWidthImg"></label></li>
+          <li><label>Min Height: <input type="text" id="mHeightImg"></label></li>
+          <li>
+            <label>Background Color:
+              <span class="colorPicker">
+                <input id="bgColorPickerImg" class="colorInput" type="color" />
+                <input type="text" id="bgColorImg" class="txtInput" />
+              </span>
+            </label>
+          </li>
+          <li><label>Alignment:
+              <select id="tAlignImg">
+                <option value=""></option>
+                <option value="left">Left</option>
+                <option value="center">Center</option>
+                <option value="right">Right</option>
+              </select>
+            </label>
+          </li>
+        </ul>
+        <div class="groupBtns">
+          <button id="saveImg" title="Apply Styling" class="actionBtns"><i class="fa fa-magic"
+              aria-hidden="true"></i></button>
+          <button id="dupImg" title="Duplicate Element" class="actionBtns"><i class="fa fa-files-o"
+              aria-hidden="true"></i></button>
+          <button id="delImg" title="Delete Element" class="actionBtns"><i class="fa fa-trash-o"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>

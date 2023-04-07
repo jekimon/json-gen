@@ -1,0 +1,905 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.left-col.expand {
+animation-name: expand;
+}
+
+.left-col {
+  position: sticky;
+  top: 0;
+  padding: 20px 12px 12px;
+  display: flex;
+  width: 17.3%;
+  background: #164FF4;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  min-width: 190px;
+  z-index: 2;
+  animation-duration: 500ms;
+  animation-name: expandOption;
+}
+
+.left-col.collapsed {
+  animation-name: collapseOption;
+  margin-left: -17.3%;
+}
+
+.left-col.collapsed .collapse button {
+  width: 24px!important;
+  margin-right: -12px;
+  padding-left: 10px;
+}
+
+.left-col.collapsed i.fa.fa-angle-left {
+  margin-left: 7px;
+}
+
+.left-col.collapsed .collapse button:hover {
+  margin-right: -18px!important;
+}
+
+.left-col.collapsed .collapse button i {
+  transform: rotate(180deg);
+}
+
+button#collapseLeft {
+  height: 60px;
+  width: 15px;
+  border: none;
+  display: flex;
+  background: #0d44eb;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.collapse {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+button#collapseLeft:hover {
+  background: #265eff;
+}
+
+@keyframes expand {
+  0% {
+		margin-left: 0;
+  }
+  100% {
+		margin-left: 0;
+  }
+}
+
+@keyframes collapseOption {
+  0% {
+		margin-left: 0;
+  }
+  100% {
+		margin-left: -17.3%;
+  }
+}
+
+@keyframes expandOption {
+  0% {
+		margin-left: -17.3%;
+  }
+  100% {
+		margin-left: 0;
+  }
+}
+
+.right-col {
+  position: relative;
+  width: 100%;
+}
+
+.blockContainer {
+  overflow: hidden;
+}
+
+.pageContainer {
+  height: 100%;
+  background: #eeeeee;
+}
+
+.blockContainer .blocks {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #ffffff;
+  color: #ffffff;
+  padding: 10px;
+  height: 50px;
+  transition: background 200ms ease;
+  cursor: grab;
+}
+
+.blockContainer .blocks:hover,
+.btnClass:hover {
+  background: rgb(255 255 255 / 10%);
+}
+/* 
+#obj-sec {
+  width: 100%;
+} */
+
+.blockContainer .section {
+  width: unset;
+}
+
+.pageContainer .section {
+  min-height: 50px;
+  padding: 10px;
+  background: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.blockContainer .contBg {
+  display: none;
+}
+
+.pageContainer .row,
+.pageContainer .column {
+  min-height: 50px;
+  padding: 10px;
+}
+
+.pageContainer .section {
+  position: relative;
+  padding: 30px 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.pageContainer .col-wrapper {
+  display: flex;
+    width: 100%;
+}
+
+.pageContainer .row .column {
+    width: 100%;
+	  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    position: relative;
+}
+
+.pageContainer .row {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.pageContainer .section .label,
+.pageContainer .row .label,
+.pageContainer .column .label {
+  display: none;
+}
+
+.blockContainer .innerBlk {
+    display: none;
+}
+
+.blockContainer .section::before {
+  content: "Section";
+}
+
+.blockContainer .column::before {
+  content: "Column";
+}
+
+.blockContainer h2, .blockContainer p {
+  display: none;
+}
+
+.blockContainer .heading::before {
+  content: "Heading";
+}
+
+.blockContainer .paragraph::before {
+  content: "Paragraph";
+}
+
+.blockContainer .button::before {
+  content: "Button";
+}
+
+.blockContainer .image::before {
+  content: "Image";
+}
+
+.pageContainer .section {
+  outline-offset: -1px;
+  outline-width: 1px;
+  outline-color: blue;
+}
+
+.pageContainer .row {
+  outline-width: 1px;
+  outline-color: red;
+}
+
+.pageContainer .column {
+  outline-width: 1px;
+  outline-color: orange;
+}
+
+.pageContainer .blks {
+  outline-width: 1px;
+  outline-color: gray;
+}
+
+.blockContainer .row {
+  display: none;
+}
+
+.hover {
+  outline-style: solid;
+}
+
+p.label {
+  text-align: center;
+}
+
+.elements {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.actions {
+    display: flex;
+    width: 100%;
+    column-gap: 10px;
+}
+
+.actions button {
+    width: 50%;
+}
+
+.btnClass {
+  display: block;
+  background: unset;
+  border: solid 1px #ffffff;
+  padding: 10px;
+  color: #fff;
+  transition: background 200ms ease;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.pageGuide * {
+	outline: dashed 1px #cccccc;
+}
+
+.btnClass.guideBtn {
+    background: #ffffff;
+    color: #164FF4;
+}
+
+.h2-title {
+	margin: 0;
+}
+
+.p-text {
+	margin: 0;
+	font-size: 16px;
+}
+
+.a-btn {
+    color: #fff;
+    background: #68217a;
+    display: inline-flex;
+    text-decoration: none;
+    padding: 0 3rem;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+#printJson {
+  display: none;
+}
+
+i#trash {
+  padding: 10px;
+  margin: 10px;
+  position: absolute;
+  bottom: 0px;
+  right: 15px;
+  z-index: 999999;
+  font-size: 2em;
+  color: #cccccc;
+  transition: all 200ms ease;
+}
+
+.ph-image {
+  padding-top: 58%;
+  background: #f9f9f9;
+  background-image: url(https://svgshare.com/i/rXs.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.div-open, .div-close {
+    display: none;
+}
+
+/**** MODAL START *****/
+
+.styleEditor {
+	list-style: none;
+	padding-inline-start: 0px;
+}
+
+.styleEditor li {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.styleEditor li label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.groupField {
+  width: 140px;
+  column-gap: 2px;
+  display: flex;
+}
+
+.styleEditor input, .styleEditor select {
+  width: 100px;
+  font-size: 11px;
+}
+
+.styleEditor .groupField input {
+  width: 25%;
+}
+
+.modal {
+  font-family: "Poppins", sans-serif;
+  color: #222222;
+  display: none;
+  position: fixed;
+	min-width: 250px;
+  top: 0;
+  bottom: 0;
+	right: 0;
+  overflow: hidden;
+  z-index: 99999;
+  animation-name: show;
+  animation-duration: 500ms;
+  box-shadow: 0 0 10px rgb(0 0 0 / 15%);
+}
+
+.modal-content {
+  font-size: 12px;
+  position: relative;
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes show {
+  0% {
+    display: none;
+		right: -240px;
+
+  }
+  100% {
+    display: block;
+		right: 0;
+
+  }
+}
+
+@keyframes exit {
+  0% {
+		right: 0;
+
+  }
+  100% {
+    display: none;
+		right: -240px;
+
+  }
+}
+
+.modal-header {
+  height: 5%;
+  padding: 12px;
+  background-color: #164FF4;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+	margin: 0;
+}
+
+.modal-body {
+  height: 95%;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  position: relative;
+  background-color: #fefefe;
+  padding: 12px;
+}
+
+.close, .closeCont {
+  color: #ffffff;
+  float: right;
+  font-size: 16px;
+}
+
+.close:hover,
+.close:focus {
+  color: #dddddd;
+  cursor: pointer;
+}
+
+.groupBtns {
+  display: flex;
+  column-gap: 2px;
+}
+
+.actionBtns {
+  width: 33.33333%;
+  display: block;
+  background: #F9A820;
+  padding: 10px;
+  color: #fff;
+  transition: all 200ms ease;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.actionBtns i {
+  width: 13px;
+}
+
+.actionBtns:hover {
+  filter: brightness(0.9);
+}
+
+
+/**** MODAL END *****/
+
+#target .blks {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* #target .section.hover::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+  background: blue;
+  color: #fff;
+  cursor: move;
+  background-image: url(https://svgshare.com/i/rXe.svg);
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+} */
+
+/* #target .column.hover::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+  background: orange;
+  color: #fff;
+  cursor: move;
+  background-image: url(https://svgshare.com/i/rXe.svg);
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+} */
+
+/* #target .blks.hover::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+  background: gray;
+  color: #fff;
+  cursor: move;
+  background-image: url(https://svgshare.com/i/rXe.svg);
+  background-position: center;
+  background-size: 50%;
+  background-repeat: no-repeat;
+} */
+
+div#row::after {
+  content: "Drop columns here";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aaaaaa;
+  border: dashed 1px #cccccc;
+}
+
+#target .emptyCol::before {
+  content: "Drop blocks here";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #aaaaaa;
+  border: dashed 1px #cccccc;
+}
+
+#editOption .actBtns, #editOption .icnBtns {
+  display: none;
+}
+.editBtnGrp {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.actBtns {
+  position: absolute;
+  right: 0;
+  height: 25px;
+  font-size: 14px;
+  display: none;
+  z-index: 999;
+}
+
+.actBtns button {
+  width: 25px;
+  height: 25px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.icnBtns {
+  position: absolute;
+  right: 0;
+  color: white;
+  display: none;
+  z-index: 99;
+}
+
+.secIcnBtns {
+  background: blue;
+}
+
+.rowIcnBtns {
+  background: red;
+}
+
+.colIcnBtns {
+  background: orange;
+}
+
+.blkIcnBtns {
+  background: gray;
+}
+
+.icnBtns i {
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section.hover .secActBtns, .section.hover .secIcnBtns, .column.hover .colActBtns, .column.hover .colIcnBtns, .row.hover .rowActBtns, .row.hover .rowIcnBtns, .blks.hover .blkActBtns, .blks.hover .blkIcnBtns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+#target .divOpen, #target .divClose {
+  display: none;
+}
+
+.inputFile {
+  display: none;
+}
+
+li.imageUploader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  row-gap: 10px;
+  padding: 10px;
+  outline: solid 1px #cccccc;
+}
+
+li.bgImageUploader {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  row-gap: 10px;
+  padding: 10px;
+  outline: solid 1px #cccccc;
+}
+
+#bgOutput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 120px;
+  width: 210px;
+  z-index: 2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bgPlaceholder {
+  position: relative;
+  width: 210px;
+  height: 120px;
+}
+
+.bgDefault {
+  height: 120px;
+  width: 210px;
+  background-image: url(https://i.ibb.co/7QCynM5/img-pholder.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+button#delBgImg {
+  color: #000000;
+  background: unset;
+  border: unset;
+  font-size: 10px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#bgUrl {
+  width: 100%;
+}
+
+span.colorPicker {
+  position: relative;
+}
+
+.colorPicker .colorInput {
+  width: 14px;
+  height: 18px;
+  padding: 0;
+  margin-left: 2px;
+  border: 0;
+  background: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.colorPicker .txtInput {
+  padding-left: 18px;
+}
+
+.hideUrl, #bgUrl {
+  display: none;
+}
+
+input#delBgImg::before {
+  content: "Dekete Background Image";
+  cursor: pointer;
+  background: #ffffff;
+}
+
+input#delBgImg {
+  text-align: center;
+  text-decoration: underline;
+  width: 100%;
+}
+
+
+.loader {
+  border: 10px solid #164FF4;
+  border-radius: 50%;
+  border-top: 10px solid #164ff400;
+  width: 65px;
+  height: 65px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 800ms linear infinite;
+}
+
+.saving {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  color: #ffffff;
+  font-weight: 400;
+  justify-content: center;
+  background: rgb(0 0 0 / 40%);
+  z-index: 2;
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+i#success {
+  font-size: 65px;
+  color: #164FF4;
+  display: none;
+}
+
+i#unsuccess {
+  font-size: 65px;
+  color: #960000;
+  display: none;
+}
+
+
+.actions button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.actBtns button:hover {
+  background: rgb(0 0 0 / 19%);
+}
+
+.disabled {
+  background: #e5e5e5;
+  cursor: not-allowed;
+  filter: none!important;
+}
+
+.secActBtns::before {
+  content: "Section";
+  font-size: 10px;
+  margin-right: 5px;
+  color: blue;
+}
+
+.rowActBtns::before {
+  position: absolute;
+  top: -20px;
+  right: -5px;
+  content: "Row";
+  font-size: 10px;
+  margin-right: 5px;
+  color: red;
+}
+
+.colActBtns::before {
+  position: absolute;
+  top: -20px;
+  right: -5px;
+  content: "Column";
+  font-size: 10px;
+  margin-right: 5px;
+  color: orange;
+}
+
+.blkActBtns::before {
+  position: absolute;
+  top: -20px;
+  right: -5px;
+  font-size: 10px;
+  margin-right: 5px;
+  color: gray;
+}
+
+.heading .blkActBtns::before {
+  content: "Heading";
+}
+
+.paragraph .blkActBtns::before {
+  content: "Paragraph";
+}
+
+.button .blkActBtns::before {
+  content: "Button";
+}
+
+.image .blkActBtns::before {
+  content: "Image";
+}
+
+.fa-chevron-left.up, .fa-chevron-right.down {
+  transform: rotate(90deg);
+}
+
+.fa-chevron-up.left, .fa-chevron-down.right {
+  transform: rotate(-90deg);
+}
