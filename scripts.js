@@ -63,15 +63,12 @@ function imgError() {
   setTimeout(function () {
     const imgs = document.querySelectorAll("#target #img-Output");
     imgs.forEach(img => {
+	img.alt = 'Unable to load images from local storage.';
       img.src = "https://i.ibb.co/7QCynM5/img-pholder.png";
     });
   }, 1500);
 }
-    
-if (imgError) {
-  alert('Unable to load images from local storage.');
-}
-
+   
 function collapseExpand() {
   const editorOption = document.getElementById('editOption');
   editorOption.classList.remove("expand");
