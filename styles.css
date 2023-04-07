@@ -903,3 +903,31 @@ i#unsuccess {
 .fa-chevron-up.left, .fa-chevron-down.right {
   transform: rotate(-90deg);
 }
+
+@media (max-width: 768px) {
+	.left-col {
+	    min-width: unset;
+	}
+
+	.elements {
+	    grid-template-columns: 1fr;
+	}
+
+	.actions {
+	    column-gap: 4px;
+	}
+
+	.actions button {
+	    row-gap: 0px;
+	}
+
+	.actions .btnClass {
+	    font-size: 0;
+	}
+
+	.actions .btnClass i {
+	    font-size: 12px;
+	    width: 12px;
+	}
+
+}
